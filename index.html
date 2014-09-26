@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="quoteBook">
+<head>
+	<title>Quote Book</title>
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+<body ng-controller="mainCtrl">
+<!-- {{test}} -->
+<div class = center>
+<h1>QUOTE BOOK OF QUOTES</h1>
+
+<!-- Create three buttons, Add Quote, Remove Quote, and Filter Quotes
+Using ng-click and the methods we set up on our dataService object earlier, make those three buttons do the appropriate action.
+Once you've finished, add some ng-shows to 'toggle' the input boxes for add, remove, and filter making sure you only show one at a time. -->
+	<button ng-click="addQuote()">Add Quote</button>
+	
+	<button ng-click="removeQuote()">Remove Quote</button>
+	
+	<button ng-click="filterQuote()">Filter</button>
+	
+	<div ng-show="showAddQuote">
+		Quote:<input type="text" placeholder="New Quote" ng-model="quotesText"><br />
+		Author:<input type="text" placeholder="Author's Name" ng-model="quotesAuthor"><br />
+		<button ng-click="addAddData()">Submit</button>
+	</div>
+	
+	<div ng-show="showRemoveQuote">
+		<input type="text" placeholder="Remove this Quote" ng-model="removeTheQuote">
+		<button ng-click="removeRemoveData()">Remove</button>
+	</div>
+	
+	<div ng-show="showFilterQuote">	
+		<input type="text" placeholder="Filter the Quotes" ng-model="quoteFilter">
+		<!-- <button ng-click="filterFilterData">Filter</button> -->
+</div>
+
+<ul>
+	<li ng-repeat="quote in showQuotes| filter: quoteFilter">{{quote.text}}
+	{{quote.author}}</li>
+</ul>
+</div>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/mainCtrl.js"></script>
+<script src="js/mainSrvc.js"></script>
+</body>
+</html>
